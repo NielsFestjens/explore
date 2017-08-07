@@ -1,4 +1,4 @@
-import { Vector2 } from "../../shared/Vector2";
+import { Vector2 } from "shared/Vector2";
 
 export class CreatedTree {
     public name = "CreatedTree";

@@ -1,7 +1,7 @@
 import { Engine, Scene, Color3 } from 'Babylonjs';
 
-import { Random } from '../shared/Random';
-import { MainScene } from './MainScene';
+import { Random } from 'shared/Random';
+import { MainScene } from 'app/MainScene';
 
 let initialized = false;
 
@@ -25,6 +25,13 @@ const handleOnload = function () {
         mainScene.initScene();
         scene.registerBeforeRender(() => { mainScene.update(); });
         engine.runRenderLoop(function () { scene.render(); });
+    });
+
+    window.addEventListener('blur',function(){
+        engine.stopRenderLoop();
+    });
+    window.addEventListener('focus',function(){
+        engine.runRenderLoop(function(){ scene.render(); });
     });
 };
 

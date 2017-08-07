@@ -1,9 +1,9 @@
-import * as MyWorker from "worker-loader!../webworkers/tileworker/TileWorker";
-import { IWorkerCommand } from '../webworkers/IWorkerCommand';
-import * as Events from "../webworkers/tileworker/Events";
-import * as EventHandlers from "./EventHandlers";
-import { WorkerChannelContext } from "./WorkerChannelContext";
-import { MainScene } from "./MainScene";
+import * as MyWorker from "worker-loader?name=js/tileworker.js!../webworkers/tileworker/TileWorker";
+import { IWorkerCommand } from 'webworkers/IWorkerCommand';
+import * as Events from "webworkers/tileworker/Events";
+import * as EventHandlers from "app/EventHandlers";
+import { WorkerChannelContext } from "app/WorkerChannelContext";
+import { MainScene } from "app/MainScene";
 
 export class WorkerChannel {
 

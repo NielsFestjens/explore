@@ -1,9 +1,9 @@
 import { Scene, ShadowGenerator } from "Babylonjs";
 
-import { WorkerChannel } from "./WorkerChannel";
-import { Assets } from "./Assets";
-import { TileSet } from "./TileSet";
-import { MainScene } from "./MainScene";
+import { WorkerChannel } from "app/WorkerChannel";
+import { Assets } from "app/Assets";
+import { TileSet } from "app/TileSet";
+import { MainScene } from "app/MainScene";
 
 export class WorkerChannelContext {
     public scene: Scene;

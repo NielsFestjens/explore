@@ -1,8 +1,8 @@
 import { Scene, AbstractMesh, Mesh, Vector3, FollowCamera, ShadowGenerator } from 'Babylonjs';
 
-import { GameState } from './GameState';
-import { Keys } from './Keys';
-import { Assets } from './Assets';
+import { GameState } from 'app/GameState';
+import { Keys } from 'app/Keys';
+import { Assets } from 'app/Assets';
 
 export class Player {
 

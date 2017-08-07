@@ -1,7 +1,7 @@
 import { Tools } from 'Babylonjs';
 
-import { Keys } from './Keys';
-import { Hud } from './Hud';
+import { Keys } from 'app/Keys';
+import { Hud } from 'app/Hud';
 
 export class GameState {
     public paused: boolean = false;

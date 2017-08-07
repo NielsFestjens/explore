@@ -1,5 +1,5 @@
 import { Vector3 } from "Babylonjs";
-import { Vector2 } from "../shared/Vector2";
+import { Vector2 } from "shared/Vector2";
 
 export class Tile {
     public content: ITileContent;

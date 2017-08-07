@@ -1,6 +1,6 @@
-import { Random } from '../../shared/Random';
-import { TileSet } from './TileSet';
-import { TileWorker } from './TileWorker';
+import { Random } from 'shared/Random';
+import { TileSet } from 'webworkers/tileworker/TileSet';
+import { TileWorker } from 'webworkers/tileworker/TileWorker';
 
 export class TileWorkerContext {
     public tileSet: TileSet;

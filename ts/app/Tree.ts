@@ -1,9 +1,9 @@
 import { AbstractMesh, Scene, ShadowGenerator, Vector3, Color3, StandardMaterial, VertexData, VertexBuffer } from 'Babylonjs';
 
-import { Random } from '../shared/Random';
-import { Util } from './Util';
-import { Assets } from './Assets';
-import { Tile, ITileContent } from './TileSet'
+import { Random } from 'shared/Random';
+import { Util } from 'app/Util';
+import { Assets } from 'app/Assets';
+import { Tile, ITileContent } from 'app/TileSet'
 
 export class Tree implements ITileContent {
 

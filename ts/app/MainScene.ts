@@ -1,17 +1,17 @@
 import { Engine, Scene, Color3, Vector3, Mesh, StandardMaterial, ArcRotateCamera, ShaderMaterial, FreeCamera, SceneLoader } from 'Babylonjs';
 
-import { Random } from '../shared/Random';
-import { GameState } from './GameState';
-import { Tree } from './Tree';
-import { Player } from './Player';
-import { Lighting } from './Lighting';
-import { TileSet } from './TileSet';
-import { Hud } from './Hud';
-import { Keys } from './Keys';
-import { Assets } from './Assets';
-import { WorkerChannel } from './WorkerChannel';
-import * as TileWorkerCommands from '../webworkers/tileworker/Commands';
-import { WorkerChannelContext } from "./WorkerChannelContext";
+import { Random } from 'shared/Random';
+import { GameState } from 'app/GameState';
+import { Tree } from 'app/Tree';
+import { Player } from 'app/Player';
+import { Lighting } from 'app/Lighting';
+import { TileSet } from 'app/TileSet';
+import { Hud } from 'app/Hud';
+import { Keys } from 'app/Keys';
+import { Assets } from 'app/Assets';
+import { WorkerChannel } from 'app/WorkerChannel';
+import * as TileWorkerCommands from 'webworkers/tileworker/Commands';
+import { WorkerChannelContext } from "app/WorkerChannelContext";
 
 export class MainScene {
 

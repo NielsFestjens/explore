@@ -1,7 +1,7 @@
-import * as Commands from "./Commands";
-import * as CommandHandlers from "./CommandHandlers";
-import { TileWorkerContext } from './TileWorkerContext';
-import { Random } from '../../shared/Random';
+import * as Commands from "webworkers/tileworker/Commands";
+import * as CommandHandlers from "webworkers/tileworker/CommandHandlers";
+import { TileWorkerContext } from 'webworkers/tileworker/TileWorkerContext';
+import { Random } from 'shared/Random';
 
 export class TileWorker {
     

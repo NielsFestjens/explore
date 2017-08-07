@@ -1,16 +1,22 @@
+var path = require('path');
+
 module.exports = {
  entry: './ts/app/app.ts',
  module: {
    rules: [
      {
        test: /\.tsx?$/,
-       use: 'ts-loader',
+       use: 'awesome-typescript-loader',
        exclude: /node_modules/
      }
    ]
  },
  resolve: {
-   extensions: [".tsx", ".ts", ".js"]
+   extensions: [".tsx", ".ts", ".js"],
+   modules: [
+     path.resolve(__dirname, 'ts'),
+     'node_modules'
+   ]
  },
  output: {
    filename: 'js/bundle.js',

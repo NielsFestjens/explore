@@ -1,1 +1,1 @@
-export { CreatedTree } from "./CreatedTree";
+export { CreatedTree } from "app/eventHandlers/CreatedTree";

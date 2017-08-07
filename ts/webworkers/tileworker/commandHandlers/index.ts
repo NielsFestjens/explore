@@ -1,1 +1,1 @@
-export { Initialize } from "./Initialize";
+export { Initialize } from "webworkers/tileworker/commandHandlers/Initialize";
