@@ -17,6 +17,7 @@ export class WorkerChannel {
         this.context = new WorkerChannelContext(this, mainScene);
 
         this.handlers[new Events.CreatedTree().name] = EventHandlers.CreatedTree;
+        this.handlers[new Events.UpdatedTree().name] = EventHandlers.UpdatedTree;
 
         this.worker = new MyWorker();
         this.worker.addEventListener('message', this.handleMessage);

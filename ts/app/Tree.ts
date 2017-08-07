@@ -13,7 +13,7 @@ export class Tree implements ITileContent {
     set position(value: Vector3) { this.mesh.position = value; }
 
     private seed: number;
-    private age: number;
+    public age: number;
     private random: Random;
     private tile: Tile;
     

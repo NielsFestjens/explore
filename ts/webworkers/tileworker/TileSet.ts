@@ -6,6 +6,11 @@ export class Tile {
     public content: ITileContent;
     public actions: string[];
 
+    constructor(
+        public index: Vector2
+    ) {
+    }
+
     runTick(tickNr: number) {
         if (this.content)
             this.content.runTick(tickNr);        
@@ -32,10 +37,10 @@ export class TileSet {
         }
     }
 
-    setTile(x: number, z: number, content: ITileContent) {
-        var tile = this.tiles[x][z];
+    setTile(index: Vector2, content: ITileContent) {
+        var tile = this.tiles[index.x][index.y];
         if (!tile)
-            tile = this.tiles[x][z] = new Tile();
+            tile = this.tiles[index.x][index.y] = new Tile(index);
             
         tile.content = content;
         content.setTile(tile);

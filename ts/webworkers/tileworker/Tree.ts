@@ -1,6 +1,7 @@
 import { ITileContent, Tile } from "webworkers/tileworker/TileSet";
 import { Random } from "shared/Random";
 import { TileWorkerContext } from 'webworkers/tileworker/TileWorkerContext';
+import { CreatedTree, UpdatedTree } from "webworkers/tileworker/Events";
 
 export class Tree implements ITileContent {
     public description: string;
@@ -12,9 +13,7 @@ export class Tree implements ITileContent {
 
     constructor(
         private context: TileWorkerContext
-    ) {
-
-    }
+    ) { }
 
     init(seed: number, age: number) {
         this.seed = seed;
@@ -23,6 +22,8 @@ export class Tree implements ITileContent {
 
     public setTile(tile: Tile) {
         this.tile = tile;
+        
+        this.context.worker.sendMessage(new CreatedTree(tile.index, this.age, this.seed));
     }
 
     public runTick(tickNr: number) {
@@ -32,6 +33,8 @@ export class Tree implements ITileContent {
                 this.age += .01;
                 if (this.age > 1)
                     this.age = 1;
+
+                this.context.worker.sendMessage(new UpdatedTree(this.tile.index, this.age));
             }
         }
     }

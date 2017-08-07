@@ -4,9 +4,9 @@ export class Assets {
     constructor(
         private scene: Scene
     ) {
-        SceneLoader.ImportMesh("Person", "models/", "person2.json", this.scene, () => {
+        SceneLoader.ImportMesh("Person", "models/", "person2.babylon", this.scene, () => {
         });
-        SceneLoader.ImportMesh("Tree", "models/", "tree.json", this.scene, (meshes) => {
+        SceneLoader.ImportMesh("Tree", "models/", "tree.babylon", this.scene, (meshes) => {
             var mesh = meshes[0] as Mesh;
             mesh.isVisible = false;
             mesh.convertToFlatShadedMesh();
