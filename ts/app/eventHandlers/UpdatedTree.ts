@@ -6,6 +6,6 @@ export class UpdatedTree {
     handle(context: WorkerChannelContext, event: Events.UpdatedTree): void {
         var tile = context.tileSet.getTile(event.tileIndex);
         var tree = tile.content as Tree;
-        tree.age = event.age;
+        tree.setAge(event.age);
     }
 }

@@ -4,11 +4,13 @@ export class Hud {
 
     constructor() {
         this.root = document.getElementById("renderCanvas").parentElement;
-        this.createDiv("Position", 100, 100);
-        this.createDiv("KeyInfo", 200, 100, "Key info");
-        this.createDiv("PauseInfo", 300, 100);
-        this.createDiv("Actions", 400, 100);
-        this.createDiv("TileDescription", 500, 100);
+        var i = 1;
+        this.createDiv("Position", i++ * 100, 100);
+        this.createDiv("KeyInfo", i++ * 100, 100, "Key info");
+        this.createDiv("PauseInfo", i++ * 100, 100);
+        this.createDiv("Actions", i++ * 100, 100);
+        this.createDiv("TileDescription", i++ * 100, 100);
+        this.createDiv("FPS", i++ * 100, 100);
         this.Paused = false;
     }
 
@@ -17,6 +19,7 @@ export class Hud {
     set Paused(value: boolean) { this.setText("PauseInfo", value ? "Game paused. Press 'P' to continue" : "Press 'P' to pause"); }
     set Actions(value: string) { this.setText("Actions", value || "No actions available"); }
     set TileDescription(value: string) { this.setText("TileDescription", value || "empty"); }
+    set FPS(value: number) { this.setText("FPS", value + " FPS"); }
 
     private createDiv(id: string, top: number, left: number, value?: string) {
         var div = document.createElement("div");

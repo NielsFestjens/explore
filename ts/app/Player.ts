@@ -64,7 +64,7 @@ export class Player {
         }
 
         if (this.gameState.keyReleased[Keys.r]) {
-            this.mesh.position.x = 0;
+            this.mesh.position.x = -5;
             this.mesh.position.z= 0;
             this.mesh.rotation.y = 0;
         }

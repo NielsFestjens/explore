@@ -13,7 +13,7 @@ export class Tree implements ITileContent {
     set position(value: Vector3) { this.mesh.position = value; }
 
     private seed: number;
-    public age: number;
+    private age: number;
     private random: Random;
     private tile: Tile;
     
@@ -42,10 +42,9 @@ export class Tree implements ITileContent {
         this.recalculate();
     }
 
-    loadActionsToTile() {
-        this.tile.actions = {};
-        if (this.age > 0.5)
-            this.tile.actions["Chop"] = this.chop;
+    setAge(age: number) {
+        this.age = age;
+        this.recalculate();
     }
 
     chop() {
@@ -57,6 +56,12 @@ export class Tree implements ITileContent {
         this.loadActionsToTile();
         this.recalculateMesh();
         this.description = `A tree with an age of ${this.age.toFixed(2)}, it is ${this.age > 0.5 ? '' : 'not'} ready to be chopped.`;
+    }
+
+    loadActionsToTile() {
+        this.tile.actions = {};
+        if (this.age > 0.5)
+            this.tile.actions["Chop"] = this.chop;
     }
 
     recalculateMesh() {

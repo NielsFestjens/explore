@@ -73,6 +73,7 @@ export class MainScene {
     }
 
     update() {
+        this.hud.FPS = this.scene.getEngine().getFps();
         this.gameState.update();
 
         if (this.gameState.paused || !this.player.mesh)

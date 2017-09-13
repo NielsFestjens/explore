@@ -29,7 +29,7 @@ export class Tree implements ITileContent {
     public runTick(tickNr: number) {
         var random = new Random(this.seed + tickNr);
         if (this.age < 1) {
-            if (random.next() < 0.1) {
+            if (random.next() < .01) {
                 this.age += .01;
                 if (this.age > 1)
                     this.age = 1;

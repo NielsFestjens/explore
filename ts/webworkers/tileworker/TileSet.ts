@@ -57,10 +57,10 @@ export class TileSet {
 
     runTick() {
         this.tickNr++;
-        for (var tileRow of this.tiles) {
-            for (var tile of tileRow) {
-                if (tile)
-                    tile.runTick(this.tickNr);
+        for (var x in this.tiles) {
+            for (var y in this.tiles[x]) {
+                // if (this.tiles[x][y])
+                //     this.tiles[x][y].runTick(this.tickNr);
             }
         }
     }
