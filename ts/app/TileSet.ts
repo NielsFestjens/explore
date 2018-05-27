@@ -1,4 +1,4 @@
-import { Vector3 } from "Babylonjs";
+import { Vector3 } from "babylonjs";
 import { Vector2 } from "shared/Vector2";
 
 export class Tile {

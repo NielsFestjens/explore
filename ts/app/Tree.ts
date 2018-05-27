@@ -1,4 +1,4 @@
-import { AbstractMesh, Scene, ShadowGenerator, Vector3, Color3, StandardMaterial, VertexData, VertexBuffer } from 'Babylonjs';
+import { AbstractMesh, Scene, ShadowGenerator, Vector3, Color3, StandardMaterial, VertexData, VertexBuffer } from 'babylonjs';
 
 import { Random } from 'shared/Random';
 import { Util } from 'app/Util';

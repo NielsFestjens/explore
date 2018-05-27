@@ -1,4 +1,4 @@
-import { Engine, Scene, Color3, Vector3, Mesh, StandardMaterial, ArcRotateCamera, ShaderMaterial, FreeCamera, SceneLoader } from 'Babylonjs';
+import { Engine, Scene, Color3, Vector3, Mesh, StandardMaterial, ArcRotateCamera, ShaderMaterial, FreeCamera, SceneLoader } from 'babylonjs';
 
 import { Random } from 'shared/Random';
 import { GameState } from 'app/GameState';

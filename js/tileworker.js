@@ -70,7 +70,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Random = (function () {
+var Random = /** @class */ (function () {
     function Random(seed) {
         this.seed = seed;
     }
@@ -102,7 +102,7 @@ var Commands = __webpack_require__(2);
 var CommandHandlers = __webpack_require__(3);
 var TileWorkerContext_1 = __webpack_require__(9);
 var Random_1 = __webpack_require__(0);
-var TileWorker = (function () {
+var TileWorker = /** @class */ (function () {
     function TileWorker() {
         var _this = this;
         this.handlers = {};
@@ -135,7 +135,7 @@ var worker = new TileWorker();
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Initialize = (function () {
+var Initialize = /** @class */ (function () {
     function Initialize() {
         this.name = "Initialize";
     }
@@ -164,9 +164,8 @@ exports.Initialize = Initialize_1.Initialize;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Vector2_1 = __webpack_require__(5);
 var Tree_1 = __webpack_require__(6);
-var TileSet_1 = __webpack_require__(7);
-var Events_1 = __webpack_require__(8);
-var Initialize = (function () {
+var TileSet_1 = __webpack_require__(8);
+var Initialize = /** @class */ (function () {
     function Initialize() {
     }
     Initialize.prototype.handle = function (context, command) {
@@ -176,18 +175,13 @@ var Initialize = (function () {
     };
     Initialize.prototype.createTrees = function (context) {
         for (var x = -5; x <= 5; x++) {
-            for (var z = -5; z <= 5; z++) {
+            for (var y = -5; y <= 5; y++) {
                 if (context.random.next() < 0.75) {
                     var tree = new Tree_1.Tree(context);
                     var seed = context.random.next();
                     var age = context.random.next();
                     tree.init(seed, age);
-                    context.tileSet.setTile(x, z, tree);
-                    var event = new Events_1.CreatedTree();
-                    event.tileIndex = new Vector2_1.Vector2(x, z);
-                    event.seed = seed;
-                    event.age = age;
-                    context.worker.sendMessage(event);
+                    context.tileSet.setTile(new Vector2_1.Vector2(x, y), tree);
                 }
             }
         }
@@ -204,7 +198,7 @@ exports.Initialize = Initialize;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Vector2 = (function () {
+var Vector2 = /** @class */ (function () {
     function Vector2(x, y) {
         this.x = x;
         this.y = y;
@@ -222,7 +216,8 @@ exports.Vector2 = Vector2;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var Random_1 = __webpack_require__(0);
-var Tree = (function () {
+var Events_1 = __webpack_require__(7);
+var Tree = /** @class */ (function () {
     function Tree(context) {
         this.context = context;
     }
@@ -232,14 +227,16 @@ var Tree = (function () {
     };
     Tree.prototype.setTile = function (tile) {
         this.tile = tile;
+        this.context.worker.sendMessage(new Events_1.CreatedTree(tile.index, this.age, this.seed));
     };
     Tree.prototype.runTick = function (tickNr) {
         var random = new Random_1.Random(this.seed + tickNr);
         if (this.age < 1) {
-            if (random.next() < 0.1) {
+            if (random.next() < .01) {
                 this.age += .01;
                 if (this.age > 1)
                     this.age = 1;
+                this.context.worker.sendMessage(new Events_1.UpdatedTree(this.tile.index, this.age));
             }
         }
     };
@@ -255,8 +252,37 @@ exports.Tree = Tree;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Tile = (function () {
-    function Tile() {
+var CreatedTree = /** @class */ (function () {
+    function CreatedTree(tileIndex, age, seed) {
+        this.tileIndex = tileIndex;
+        this.age = age;
+        this.seed = seed;
+        this.name = "CreatedTree";
+    }
+    return CreatedTree;
+}());
+exports.CreatedTree = CreatedTree;
+var UpdatedTree = /** @class */ (function () {
+    function UpdatedTree(tileIndex, age) {
+        this.tileIndex = tileIndex;
+        this.age = age;
+        this.name = "UpdatedTree";
+    }
+    return UpdatedTree;
+}());
+exports.UpdatedTree = UpdatedTree;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Tile = /** @class */ (function () {
+    function Tile(index) {
+        this.index = index;
     }
     Tile.prototype.runTick = function (tickNr) {
         if (this.content)
@@ -265,7 +291,7 @@ var Tile = (function () {
     return Tile;
 }());
 exports.Tile = Tile;
-var TileSet = (function () {
+var TileSet = /** @class */ (function () {
     function TileSet(size) {
         this.tileSize = 10;
         this.tickNr = 0;
@@ -274,10 +300,10 @@ var TileSet = (function () {
             this.tiles[x] = [];
         }
     }
-    TileSet.prototype.setTile = function (x, z, content) {
-        var tile = this.tiles[x][z];
+    TileSet.prototype.setTile = function (index, content) {
+        var tile = this.tiles[index.x][index.y];
         if (!tile)
-            tile = this.tiles[x][z] = new Tile();
+            tile = this.tiles[index.x][index.y] = new Tile(index);
         tile.content = content;
         content.setTile(tile);
     };
@@ -291,12 +317,10 @@ var TileSet = (function () {
     };
     TileSet.prototype.runTick = function () {
         this.tickNr++;
-        for (var _i = 0, _a = this.tiles; _i < _a.length; _i++) {
-            var tileRow = _a[_i];
-            for (var _b = 0, tileRow_1 = tileRow; _b < tileRow_1.length; _b++) {
-                var tile = tileRow_1[_b];
-                if (tile)
-                    tile.runTick(this.tickNr);
+        for (var x in this.tiles) {
+            for (var y in this.tiles[x]) {
+                // if (this.tiles[x][y])
+                //     this.tiles[x][y].runTick(this.tickNr);
             }
         }
     };
@@ -306,29 +330,13 @@ exports.TileSet = TileSet;
 
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var CreatedTree = (function () {
-    function CreatedTree() {
-        this.name = "CreatedTree";
-    }
-    return CreatedTree;
-}());
-exports.CreatedTree = CreatedTree;
-
-
-/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var TileWorkerContext = (function () {
+var TileWorkerContext = /** @class */ (function () {
     function TileWorkerContext(worker, random) {
         this.worker = worker;
         this.random = random;

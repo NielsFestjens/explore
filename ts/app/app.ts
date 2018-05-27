@@ -1,4 +1,4 @@
-import { Engine, Scene, Color3 } from 'Babylonjs';
+import { Engine, Scene, Color3 } from 'babylonjs';
 
 import { Random } from 'shared/Random';
 import { MainScene } from 'app/MainScene';
@@ -11,7 +11,7 @@ const handleOnload = function () {
         
     initialized = true;
     
-    var canvas = document.getElementById("renderCanvas");
+    var canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
 	var engine = new Engine(canvas, true);
     engine.enableOfflineSupport = undefined;
     

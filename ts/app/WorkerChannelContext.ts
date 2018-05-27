@@ -1,4 +1,4 @@
-import { Scene, ShadowGenerator } from "Babylonjs";
+import { Scene, ShadowGenerator } from "babylonjs";
 
 import { WorkerChannel } from "app/WorkerChannel";
 import { Assets } from "app/Assets";

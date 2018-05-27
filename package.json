@@ -4,11 +4,11 @@
   "description": "explore a randomly generated world",
   "main": "index.html",
   "dependencies": {
-    "@types/babylonjs": "^2.4.1",
+    "awesome-typescript-loader": "^3.2.2",
+    "babylonjs": "^3.2.0",
     "webpack": "^3.4.1",
     "ts-loader": "^2.3.2",
     "typescript": "^2.4.2",
-    "awesome-typescript-loader": "^3.2.2",
     "worker-loader": "^0.8.1"
   },
   "scripts": {

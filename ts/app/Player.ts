@@ -1,4 +1,4 @@
-import { Scene, AbstractMesh, Mesh, Vector3, FollowCamera, ShadowGenerator } from 'Babylonjs';
+import { Scene, AbstractMesh, Mesh, Vector3, FollowCamera, ShadowGenerator } from 'babylonjs';
 
 import { GameState } from 'app/GameState';
 import { Keys } from 'app/Keys';

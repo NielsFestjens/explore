@@ -1,4 +1,4 @@
-import { Tools } from 'Babylonjs';
+import { Tools } from 'babylonjs';
 
 import { Keys } from 'app/Keys';
 import { Hud } from 'app/Hud';

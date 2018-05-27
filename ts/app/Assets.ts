@@ -1,4 +1,4 @@
-import { SceneLoader, Mesh, Scene, Vector3 } from "Babylonjs";
+import { SceneLoader, Mesh, Scene, Vector3 } from "babylonjs";
 
 export class Assets {
     constructor(
@@ -6,8 +6,8 @@ export class Assets {
     ) {
         SceneLoader.ImportMesh("Person", "models/", "person2.babylon", this.scene, () => {
         });
-        SceneLoader.ImportMesh("Tree", "models/", "tree.babylon", this.scene, (meshes) => {
-            var mesh = meshes[0] as Mesh;
+        SceneLoader.ImportMesh("Tree", "models/", "tree.babylon", this.scene, (meshes:Mesh[]) => {
+            var mesh = meshes[0];
             mesh.isVisible = false;
             mesh.convertToFlatShadedMesh();
         });

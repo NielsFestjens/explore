@@ -1,4 +1,4 @@
-import { HemisphericLight, DirectionalLight, ShadowGenerator, Scene, Vector3 } from 'Babylonjs';
+import { HemisphericLight, DirectionalLight, ShadowGenerator, Scene, Vector3 } from 'babylonjs';
 
 export class Lighting {
     public ambientLight: HemisphericLight;
