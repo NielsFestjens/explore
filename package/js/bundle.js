@@ -438,9 +438,9 @@ var Player = /** @class */ (function () {
     Player.prototype.update = function () {
         var isMoving = false;
         if (this.gameState.keyPressed[Keys_1.Keys.arrowUp] || this.gameState.keyPressed[Keys_1.Keys.z]) {
-            // this.mesh.position.x -= Math.sin(this.mesh.rotation.y) * 0.5;
-            // this.mesh.position.z -= Math.cos(this.mesh.rotation.y) * 0.5;
-            this.mesh.moveWithCollisions(new babylonjs_1.Vector3(-Math.sin(this.mesh.rotation.y) * 0.5, 0, -Math.cos(this.mesh.rotation.y) * 0.5));
+            this.mesh.position.x -= Math.sin(this.mesh.rotation.y) * 0.3;
+            this.mesh.position.z -= Math.cos(this.mesh.rotation.y) * 0.3;
+            // this.mesh.moveWithCollisions(new Vector3(-Math.sin(this.mesh.rotation.y) * 0.5, 0, -Math.cos(this.mesh.rotation.y) * 0.5))
             isMoving = true;
         }
         if (this.gameState.keyPressed[Keys_1.Keys.arrowDown] || this.gameState.keyPressed[Keys_1.Keys.s]) {
@@ -449,10 +449,10 @@ var Player = /** @class */ (function () {
             isMoving = true;
         }
         if (this.gameState.keyPressed[Keys_1.Keys.arrowLeft] || this.gameState.keyPressed[Keys_1.Keys.q]) {
-            this.mesh.rotation.y -= 0.05;
+            this.mesh.rotation.y -= 0.03;
         }
         if (this.gameState.keyPressed[Keys_1.Keys.arrowRight] || this.gameState.keyPressed[Keys_1.Keys.d]) {
-            this.mesh.rotation.y += 0.05;
+            this.mesh.rotation.y += 0.03;
         }
         if (isMoving !== this.isMoving) {
             this.isMoving = isMoving;
@@ -599,7 +599,7 @@ var Hud = /** @class */ (function () {
         configurable: true
     });
     Object.defineProperty(Hud.prototype, "FPS", {
-        set: function (value) { this.setText("FPS", value + " FPS"); },
+        set: function (value) { this.setText("FPS", Math.round(value) + " FPS"); },
         enumerable: true,
         configurable: true
     });
@@ -802,7 +802,7 @@ var Tree = /** @class */ (function () {
     Tree.prototype.recalculate = function () {
         this.loadActionsToTile();
         this.recalculateMesh();
-        this.description = "A tree with an age of " + this.age.toFixed(2) + ", it is " + (this.age > 0.5 ? '' : 'not') + " ready to be chopped.";
+        this.description = "A tree with an age of " + this.age.toFixed(2) + " (size mod: " + Math.round(this.size * 100) / 100 + "), it is " + (this.age > 0.5 ? '' : 'not') + " ready to be chopped.";
     };
     Tree.prototype.loadActionsToTile = function () {
         this.tile.actions = {};
@@ -811,8 +811,8 @@ var Tree = /** @class */ (function () {
     };
     Tree.prototype.recalculateMesh = function () {
         this.random = new Random_1.Random(this.seed);
-        var size = this.random.nextBetween(0.75, 1.25);
-        var factor = this.age * size + 0.1;
+        this.size = this.random.nextBetween(0.75, 1.25);
+        var factor = this.age * this.size + 0.1;
         this.mesh.ellipsoid = new babylonjs_1.Vector3(5.0, 5.0, 5.0);
         this.mesh.rotation = new babylonjs_1.Vector3(0, this.random.next() * Math.PI * 2, 0);
         this.mesh.scaling = new babylonjs_1.Vector3(factor, factor, factor);
