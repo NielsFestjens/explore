@@ -8,6 +8,7 @@ Copy-Item -Path 'Web.config' -Destination 'package\Web.config'
 Copy-Item -Path 'js' -Destination 'package/js' -Recurse
 Copy-Item -Path 'css' -Destination 'package/css' -Recurse
 Copy-Item -Path 'models' -Destination 'package/models' -Recurse
+Copy-Item -Path 'shaders' -Destination 'package/shaders' -Recurse
 
 Remove-Item 'package.zip' -Force
 Compress-Archive -Path 'package\*' -DestinationPath 'package.zip'
