@@ -42,8 +42,8 @@ export class Player {
         }
 
         if (this.gameState.keyPressed[Keys.arrowDown] || this.gameState.keyPressed[Keys.s]) {
-            this.mesh.position.x += Math.sin(this.mesh.rotation.y);
-            this.mesh.position.z += Math.cos(this.mesh.rotation.y);
+            this.mesh.position.x += Math.sin(this.mesh.rotation.y) * 0.3;
+            this.mesh.position.z += Math.cos(this.mesh.rotation.y) * 0.3;
             isMoving = true;
         }
 
