@@ -35,9 +35,9 @@ export class Player {
     update() {
         var isMoving = false;
         if (this.gameState.keyPressed[Keys.arrowUp] || this.gameState.keyPressed[Keys.z]) {
-            // this.mesh.position.x -= Math.sin(this.mesh.rotation.y) * 0.5;
-            // this.mesh.position.z -= Math.cos(this.mesh.rotation.y) * 0.5;
-            this.mesh.moveWithCollisions(new Vector3(-Math.sin(this.mesh.rotation.y) * 0.5, 0, -Math.cos(this.mesh.rotation.y) * 0.5))
+            this.mesh.position.x -= Math.sin(this.mesh.rotation.y) * 0.3;
+            this.mesh.position.z -= Math.cos(this.mesh.rotation.y) * 0.3;
+            // this.mesh.moveWithCollisions(new Vector3(-Math.sin(this.mesh.rotation.y) * 0.5, 0, -Math.cos(this.mesh.rotation.y) * 0.5))
             isMoving = true;
         }
 
@@ -48,11 +48,11 @@ export class Player {
         }
 
         if (this.gameState.keyPressed[Keys.arrowLeft] || this.gameState.keyPressed[Keys.q]) {
-            this.mesh.rotation.y -= 0.05;
+            this.mesh.rotation.y -= 0.03;
         }
 
         if (this.gameState.keyPressed[Keys.arrowRight] || this.gameState.keyPressed[Keys.d]) {
-            this.mesh.rotation.y += 0.05;
+            this.mesh.rotation.y += 0.03;
         }
 
         if (isMoving !== this.isMoving) {

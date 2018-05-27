@@ -19,7 +19,7 @@ export class Hud {
     set Paused(value: boolean) { this.setText("PauseInfo", value ? "Game paused. Press 'P' to continue" : "Press 'P' to pause"); }
     set Actions(value: string) { this.setText("Actions", value || "No actions available"); }
     set TileDescription(value: string) { this.setText("TileDescription", value || "empty"); }
-    set FPS(value: number) { this.setText("FPS", value + " FPS"); }
+    set FPS(value: number) { this.setText("FPS", Math.round(value) + " FPS"); }
 
     private createDiv(id: string, top: number, left: number, value?: string) {
         var div = document.createElement("div");

@@ -13,6 +13,7 @@ export class Tree implements ITileContent {
     set position(value: Vector3) { this.mesh.position = value; }
 
     private seed: number;
+    private size: number;
     private age: number;
     private random: Random;
     private tile: Tile;
@@ -55,7 +56,7 @@ export class Tree implements ITileContent {
     recalculate() {
         this.loadActionsToTile();
         this.recalculateMesh();
-        this.description = `A tree with an age of ${this.age.toFixed(2)}, it is ${this.age > 0.5 ? '' : 'not'} ready to be chopped.`;
+        this.description = `A tree with an age of ${this.age.toFixed(2)} (size mod: ${Math.round(this.size * 100) / 100}), it is ${this.age > 0.5 ? '' : 'not'} ready to be chopped.`;
     }
 
     loadActionsToTile() {
@@ -66,8 +67,8 @@ export class Tree implements ITileContent {
 
     recalculateMesh() {
         this.random = new Random(this.seed);
-        var size = this.random.nextBetween(0.75, 1.25);
-        var factor = this.age * size + 0.1;
+        this.size = this.random.nextBetween(0.75, 1.25);
+        var factor = this.age * this.size + 0.1;
 
         this.mesh.ellipsoid = new Vector3(5.0, 5.0, 5.0);
         this.mesh.rotation = new Vector3(0, this.random.next() * Math.PI * 2, 0);

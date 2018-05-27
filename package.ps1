@@ -6,3 +6,6 @@ New-Item 'package' -ItemType directory
 Copy-Item -Path 'index.html' -Destination 'package\index.html'
 Copy-Item -Path 'js' -Destination 'package/js' -Recurse
 Copy-Item -Path 'css' -Destination 'package/css' -Recurse
+Copy-Item -Path 'models' -Destination 'package/models' -Recurse
+
+Compress-Archive -Path 'package' -DestinationPath 'package.zip'
