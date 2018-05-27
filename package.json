@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "explore a randomly generated world",
   "main": "index.html",
+  "repository": "https://github.com/NielsFestjens/explore",
   "dependencies": {
     "awesome-typescript-loader": "^3.2.2",
     "babylonjs": "^3.2.0",

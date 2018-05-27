@@ -1,4 +1,4 @@
-npm isntall
+npm install
 npm run build
 
 Remove-Item 'package' -Force -Recurse
